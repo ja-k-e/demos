@@ -1,0 +1,712 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+    :root {
+      --font: Helvetica, sans-serif;
+      --color-bg: black;
+      --color-fg: white;
+      --color-off: #333;
+      --color-accent: #fb0;
+      --border: 6px;
+      --spacer: 2rem;
+      --font-xl: 4rem;
+      --font-lg: 2.7rem;
+      --font-md: 2.2rem;
+      --font-sm: 1.1rem;
+      --image-width: 100%;
+    }
+
+    @media (min-width: 800px) {
+      :root {
+        --border: 8px;
+        --font-xl: 6rem;
+        --font-lg: 3.6rem;
+        --font-md: 2.8rem;
+        --font-sm: 1.6rem;
+        --image-width: 300px;
+        --spacer: 4rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      :root {
+        --image-width: 380px;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --color-bg: white;
+        --color-fg: black;
+        --color-off: #ebebeb;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    @supports selector(A:focus-visible) {
+      :focus {
+        outline: none;
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-fg);
+      font-family: var(--font);
+      font-weight: 100;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2 {
+      color: var(--color-fg);
+    }
+
+    h3 {
+      color: var(--color-off)
+    }
+
+    h2.hang {
+      text-indent: -0.5em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: var(--font-xl);
+    }
+
+    h2 {
+      font-size: var(--font-lg);
+    }
+
+    h3 {
+      font-size: var(--font-md);
+    }
+
+    p {
+      font-size: var(--font-sm);
+    }
+
+    h3,
+    p {
+      margin-top: 0.5em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font);
+      line-height: 1;
+    }
+
+    p {
+      line-height: 1.3;
+    }
+
+    a {
+      color: var(--color-fg);
+    }
+
+    h2 a {
+      color: inherit;
+      display: block;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    a:active {
+      color: var(--color-accent);
+    }
+
+    @media (hover: hover) {
+      a:hover {
+        color: var(--color-accent);
+      }
+    }
+
+    main {
+      margin: 0 auto;
+      max-width: 1200px;
+      padding-bottom: calc(var(--spacer) * 2);
+      width: calc(100% - var(--spacer) * 2);
+    }
+
+    main header {
+      padding-top: calc(var(--spacer) * 2);
+      padding-bottom: calc(var(--spacer) * 0.5);
+      border-bottom: var(--border) solid var(--color-fg);
+    }
+
+    .filter-games nav li.games a,
+    .filter-audio nav li.audio a,
+    .filter-css nav li.css a,
+    .filter-visual nav li.visual a,
+    .filter-misc nav li.misc a {
+      color: var(--color-accent);
+      border-bottom: solid var(--border);
+    }
+
+    .filter-games ul.list li:not(.games),
+    .filter-audio ul.list li:not(.audio),
+    .filter-css ul.list li:not(.css),
+    .filter-visual ul.list li:not(.visual),
+    .filter-misc ul.list li:not(.misc) {
+      display: none;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--font-md);
+      font-weight: bold;
+      margin-top: calc(var(--spacer) * 0.25);
+    }
+
+    nav ul li+li {
+      margin-top: calc(2 * var(--border));
+    }
+
+    @media (min-width: 800px) {
+      nav ul {
+        flex-direction: row;
+      }
+
+      nav ul li+li {
+        margin-top: 0;
+        margin-left: calc(4 * var(--border));
+      }
+    }
+
+    nav ul li a {
+      text-decoration: none;
+    }
+
+    ul.list>li {
+      display: flex;
+      flex-direction: column;
+    }
+
+    ul.list>li {
+      margin-top: calc(var(--spacer) * 2);
+    }
+
+    ul.list>li>a {
+      background-color: var(--color-fg);
+      cursor: pointer;
+      display: block;
+      position: relative;
+      width: var(--image-width);
+    }
+
+    ul.list>li>a::after {
+      content: "";
+      display: block;
+      height: auto;
+      padding-bottom: 66.66667%;
+      width: 100%;
+    }
+
+    ul.list>li>aside {
+      margin-top: var(--spacer);
+      width: 100%;
+    }
+
+    @media (min-width: 800px) {
+      ul.list>li {
+        align-items: flex-start;
+        flex-direction: row;
+      }
+
+      ul.list>li>aside {
+        margin-left: var(--spacer);
+        margin-top: 0;
+        width: calc(100% - var(--image-width) - var(--spacer));
+      }
+    }
+
+    @media (hover: hover) {
+      ul.list>li>a:hover>img {
+        transform: translateZ(0) scale(1.025);
+      }
+    }
+
+    ul.list>li>a>img {
+      border: solid var(--border);
+      bottom: 0;
+      display: block;
+      height: 100%;
+      left: 0;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: center;
+      object-position: center;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      transform-origin: 50% 50%;
+      transition: opacity 1s ease-in-out, transform 250ms ease-in-out;
+      width: 100%;
+    }
+
+    ul.list>li>a>img.loaded {
+      opacity: 1;
+    }
+  </style>
+
+
+
+
+
+
+</head>
+
+<body translate="no">
+  <main>
+    <article class="">
+      <header>
+        <h1>Demos</h1>
+        <p>This is a summary of some of <a href="https://twitter.com/jake_albaugh">Jake Albaugh's</a> work on <a
+            href="https://codepen.io/jakealbaugh">CodePen</a>.</p>
+      </header>
+      <nav>
+        <ul>
+          <li class="audio"><a data-filter="audio" href="#">Audio</a></li>
+          <li class="css"><a data-filter="css" href="#">CSS</a></li>
+          <li class="games"><a data-filter="games" href="#">Games</a></li>
+          <li class="visual"><a data-filter="visual" href="#">Visual</a></li>
+          <li class="misc"><a data-filter="misc" href="#">Misc</a></li>
+        </ul>
+      </nav>
+      <ul class="list">
+        <li class="misc">
+          <a href="https://codepen.io/collection/nojQqq">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/NAZozz.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/collection/nojQqq">Travelling Salesperson Sketches</a></h2>
+            <p>A collection of demos exploring the Travelling Salesperson Problem.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/qNrZyw">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-qNrZyw.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/qNrZyw">Musical Chord Progression Arpeggiator</a></h2>
+            <p>An interface to quickly sketch out musical chord progressions in different musical modes.</p>
+          </aside>
+        </li>
+        <li class="games">
+          <a href="https://codepen.io/jakealbaugh/full/JjRGQPY">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/JjRGQPY.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/JjRGQPY">Cheap AI Chess!</a></h2>
+            <p>A functional chess game. Play yourself, your friends, a horrible AI, or watch it play itself!</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/ZxLKvG">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/ZxLKvG.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/ZxLKvG">Video Music</a></h2>
+            <p>A program that uses the hue of your camera feed to change chords in a chord progression performed by an
+              arpeggiator.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/KBsIo">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/KBsIo.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/KBsIo">No JS: Tabs that scale down to menu</a></h2>
+            <p>Using the radio and checkbox input :checked hack to achieve a tab UI that collapses into a menu.</p>
+          </aside>
+        </li>
+        <li class="visual">
+          <a href="https://codepen.io/jakealbaugh/full/ZvwgOg">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/ZvwgOg.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/ZvwgOg">Lissajous</a></h2>
+            <p>Lissajous curve drawing inspired by <a href="https://twitter.com/panlepan">Vincent Pantaloni</a>.</p>
+          </aside>
+        </li>
+        <li class="games">
+          <a href="https://codepen.io/jakealbaugh/full/rYxKBw">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/rYxKBw.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/rYxKBw">Pursuit of PI</a></h2>
+            <p>A geometric musical game. You are a triangle. Aquiring sides in your effort to become a circle. You can
+              only jump. When you are not moving, time stands still.</p>
+          </aside>
+        </li>
+        <li class="visual">
+          <a href="https://codepen.io/jakealbaugh/full/OJNvWVp">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/OJNvWVp.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/OJNvWVp">100 Divs - Recursive Mesh</a></h2>
+            <p>Submission for the 100 div CodePen challenge. </p>
+          </aside>
+        </li>
+        <li class="misc">
+          <a href="https://codepen.io/jakealbaugh/full/dazIH">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/dazIH.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/dazIH">Mac-ish Interactive Keyboard and Display</a></h2>
+            <p>Using CSS `attr()` content to achieve this keyboard style.</p>
+          </aside>
+        </li>
+        <li class="visual">
+          <a href="https://codepen.io/jakealbaugh/full/yXWayY">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/yXWayY.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/yXWayY">Some Noise</a></h2>
+            <p>Animating random noise. Challenge was to build something in under 8 minutes.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/NAjdLY">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-NAjdLY.png" class="loaded">
+          </a>
+          <aside>
+            <h2 class="hang">
+              <a href="https://codepen.io/jakealbaugh/full/NAjdLY">“In C” by Terry Riley</a>
+            </h2>
+            <p>A browser performance and visualization of Terry Riley’s “In C” which is a musical piece intended to be
+              played by a variable amount of performers.</p>
+          </aside>
+        </li>
+        <li class="visual">
+          <a href="https://codepen.io/jakealbaugh/full/VXGymx">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/VXGymx.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/VXGymx">Pixel Smear</a></h2>
+            <p>Self explanatory. Image pixels smearing horizontally over time.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/xqVrvE">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/xqVrvE.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/xqVrvE">Bi-directional Step Sequencer</a></h2>
+            <p>A bi-directional step sequencer with custom scale settings and the ability to save work as a URL.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/IoDhb">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/IoDhb.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/IoDhb">CSS Modal :target Selector</a></h2>
+            <p>A functioning modal that utilizes :target to open and close.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/dGqXgp">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-dGqXgp.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/dGqXgp">Step-o-matic</a></h2>
+            <p>A step sequencer and beat machine using your web browser.</p>
+          </aside>
+        </li>
+        <li class="games">
+          <a href="https://codepen.io/jakealbaugh/full/QOLgev">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/QOLgev.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/QOLgev">Bad AI Billard Battle</a></h2>
+            <p>Play pool against a truly awful AI.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/zrVdME">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-zrVdME.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/zrVdME">Binary Writer</a></h2>
+            <p>Write in binary using HTML and CSS.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/EKRarY">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-EKRarY.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/EKRarY">Seeded Procedural Music Generator</a></h2>
+            <p>Procedural Generation allows you to create unique infiniteness that can be consistently reproduced. Enter
+              seed data (your name is a great place to start) and hear a unique, infinite, and reproducible song.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/mVYgLo">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-mVYgLo.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/mVYgLo">CSS Calculator</a></h2>
+            <p>A very basic calculator that uses input radio :checked pseudo selectors to do math.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/aZdjVj">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-aZdjVj.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/aZdjVj">Searching a Dataset with Filters</a></h2>
+            <p>Searching and filtering a list of words using CSS and wildcard selectors.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/WxgzWE">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-WxgzWE.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/WxgzWE">Metered</a></h2>
+            <p>Metered is a musical composition with five patterns. Each pattern is made up of two measures in different
+              time signatures. Each pattern is looped. The drum beat changes time signatures to highlight a specific
+              pattern. The piece ends after 420 quarter notes, which is the first time that all patterns end
+              simultaneously.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/vKJKoL">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-vKJKoL.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/vKJKoL">Arpeggiator Cube</a></h2>
+            <p>An arpeggiator with an interactive interface. Scroll, drag, or arrow key y-axis to change arpeggio and
+              x-axis to change tempo. Click or tap y-axis to change pattern.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/GpgRGm">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/GpgRGm.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/GpgRGm">CSS-Only Presentation Using `:target` and
+                `accesskey`</a></h2>
+            <p>Was in one of those “inaccessible CSS solution” moods. If you’re asking “should I do this?” you probably
+              shouldn’t.</p>
+          </aside>
+        </li>
+        <li class="misc">
+          <a href="https://codepen.io/jakealbaugh/full/MvjKYN">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/MvjKYN.custom.jpg?fit=cover&amp;format=auto&amp;ha=false&amp;height=540&amp;quality=75&amp;v=2&amp;version=1501703026&amp;width=960"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/MvjKYN">Tombstone Generator</a></h2>
+            <p>You can make jokes or sincere tributes to loved ones.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/ZYdYRO">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/ZYdYRO.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/ZYdYRO">CSS Rotary Clock</a></h2>
+            <p>Recreates the function of <a
+                href="http://www.dewitt.ch/en/collections/academia/1543-mathematical.html">this watch</a> while only
+              using CSS and HTML.</p>
+          </aside>
+        </li>
+        <li class="audio">
+          <a href="https://codepen.io/jakealbaugh/full/LGmygN">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-LGmygN.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/LGmygN">Infinitely Scrollable Random Music</a></h2>
+            <p>Infinite scroll meets random music. Manually scroll down or enable autoscroll, sit back and zone out. Pro
+              Tip: Browser height influences tempo.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/yOQEOo">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-yOQEOo.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/yOQEOo">Checkbox Phone Number Input</a></h2>
+            <p>CSS that can parse checkboxes to determine numbers because science.</p>
+          </aside>
+        </li>
+        <li class="misc">
+          <a href="https://codepen.io/jakealbaugh/full/PwLXXP">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/PwLXXP.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/PwLXXP">pen#PwLXXP</a></h2>
+            <p>The self-coding (and sentient) pen.</p>
+          </aside>
+        </li>
+        <li class="misc">
+          <a href="https://codepen.io/jakealbaugh/full/JoVrdw">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/JoVrdw.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/JoVrdw">pen#JoVrdw</a></h2>
+            <p>Another self-coding pen. Cousin of pen#PwLXXP.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/LNdWZG">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-LNdWZG.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/LNdWZG">CSS Keyboard</a></h2>
+            <p>A functional keyboard using CSS</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/MKdZrb">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-MKdZrb.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/MKdZrb">Hexadecimal Counter Drawing an SVG Polyline</a>
+            </h2>
+            <p>Counts from 0-255 with CSS using 32 radios in two groups of 16, or 256 app “states” with two clicks. To
+              prove it, I am drawing a CSS SVG polyline background image with however many points you have selected
+              hexadecimally. The number you see is that number.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/eZYxjg">
+            <img onload="this.className = 'loaded'"
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/111863/2016-portfolio-eZYxjg.png" class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/eZYxjg">Hexadecimal Background Color</a></h2>
+            <p>Three input groups generating 4096 different background colors without using JavaScript. Limited to
+              three-char hex codes as six would result in 16,777,216 declaration blocks.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/qZVRrb">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/qZVRrb.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/qZVRrb">CodePen Profile Header</a></h2>
+            <p>A random animation of my face for my CodePen profile header's background.</p>
+          </aside>
+        </li>
+        <li class="css">
+          <a href="https://codepen.io/jakealbaugh/full/JYYENm">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/JYYENm.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/JYYENm">CSS Scroll Jacking Demo Using `:hover`</a></h2>
+            <p>Not that it's a good idea, but you can hijack scrolling only using :hover state in CSS.</p>
+          </aside>
+        </li>
+        <li class="misc">
+          <a href="https://codepen.io/jakealbaugh/full/ONPYxo">
+            <img onload="this.className = 'loaded'"
+              src="https://assets.codepen.io/111863/internal/screenshots/pens/ONPYxo.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=400&amp;quality=75&amp;v=2&amp;version=1527140213&amp;width=600"
+              class="loaded">
+          </a>
+          <aside>
+            <h2><a href="https://codepen.io/jakealbaugh/full/ONPYxo">Grab the Chano</a></h2>
+            <p>Grab Chance the Rapper's face and move it around while it makes noise.</p>
+          </aside>
+        </li>
+      </ul>
+    </article>
+  </main>
+
+  <script>
+    const article = document.querySelector("article");
+
+    document.querySelectorAll("[data-filter]").forEach((a) => {
+      const className = `filter-${a.getAttribute("data-filter")}`;
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        article.className = article.className === className ? "" : className;
+      });
+    });
+  </script>
+</body>
+</html>
